@@ -1,10 +1,11 @@
 var http = require('http');
-var port_table = [['JEWELRY-MSFT', 8080]]
+var os = require('os');
+var port_table = [['JEWELRY-MSFT', 8080],['Yanpings-MacBook-Air.local', 8081]];
 
 var port = 80;
 for (var i=0; i<port_table.length; i++) {
   console.info('looping computer in port table: '+global.process.env.COMPUTERNAME);
-  if (port_table[i][0]==global.process.env.COMPUTERNAME) {
+  if (port_table[i][0]==os.hostname()) {
     port = port_table[i][1];
     break;
   }
