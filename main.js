@@ -1,10 +1,11 @@
 var http = require('http');
 var os = require('os');
-var port_table = [['JEWELRY-MSFT', 8080],['Yanpings-MacBook-Air.local', 8081]];
+var port_table = [['JEWELRY-MSFT', 8081],['Yanpings-MacBook-Air.local', 8082]];
 
-var port = 80;
+console.log('Setting up the server for '+os.hostname()+'...');
+var port = 8080;
 for (var i=0; i<port_table.length; i++) {
-  console.info('looping computer in port table: '+global.process.env.COMPUTERNAME);
+  console.info('looping computer in port table: '+port_table[i][0]);
   if (port_table[i][0]==os.hostname()) {
     port = port_table[i][1];
     break;
@@ -22,3 +23,4 @@ http.createServer(function (req, res) {
 
 console.log('Server running at http://127.0.0.1:%d/', port);
 console.log('Go to http://192.168.1.1/ to add port penetration config with your IP address and port for HTTP.');
+console.log('Then you might use http://personaldaily.http01.com:<yourport>/ to access your local server.');
