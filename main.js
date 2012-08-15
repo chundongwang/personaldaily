@@ -25,6 +25,7 @@ http.createServer(function (req, res) {
   var filepath = '.'+req.url;
   if (filepath=='./')
     filepath='./static/index.html';
+  console.log('serving '+filepath);
 
   if (filepath.indexOf('./static/') == 0) {
     // Serving static files
@@ -35,7 +36,18 @@ http.createServer(function (req, res) {
             res.writeHead(500);
             res.end();
           } else {
-            res.writeHead(200, {'Content-Type': 'text/html'});
+            var ext = path.extname(filepath);
+            var contentType = 'text/html';
+            switch (ext) {
+              case '.js':
+                contentType = 'text/javascript';
+                break;
+              case '.css':
+                contentType = 'text/css';
+                break;
+            }
+
+            res.writeHead(200, {'Content-Type': contentType});
             res.end(content, 'utf-8');
           }
         });
