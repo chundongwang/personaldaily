@@ -1,7 +1,12 @@
 var http = require('http');
 var os = require('os');
+var path = require('path');
+var fs = require('fs');
+
 var port_table = [['JEWELRY-MSFT', 8081],['Yanpings-MacBook-Air.local', 8082]];
 
+// Look up the port_table to find the appropriate port to use
+//
 console.log('Setting up the server for '+os.hostname()+'...');
 var port = 8080;
 for (var i=0; i<port_table.length; i++) {
@@ -12,13 +17,38 @@ for (var i=0; i<port_table.length; i++) {
   }
 }
 
-if (port == 80) {
+if (port == 8080) {
   console.warn('Cannot find this computer in port table. You might have problem with NAT!!');
 }
 
 http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello World\n');
+  var filepath = '.'+req.url;
+  if (filepath=='./')
+    filepath='./static/index.html';
+
+  if (filepath.indexOf('./static/') == 0) {
+    // Serving static files
+    path.exists(filepath, function (exists) {
+      if (exists) {
+        fs.readFile(filepath, function (error, content) {
+          if (error) {
+            res.writeHead(500);
+            res.end();
+          } else {
+            res.writeHead(200, {'Content-Type': 'text/html'});
+            res.end(content, 'utf-8');
+          }
+        });
+      } else {
+        res.writeHead(404);
+        res.end();
+      }
+    });
+  } else if (filepath.indexOf('./hello') == 0) {
+    // Serving test object
+    require('./test.js').HelloWorld(req, res);
+  }
+
 }).listen(port, '127.0.0.1');
 
 console.log('Server running at http://127.0.0.1:%d/', port);
