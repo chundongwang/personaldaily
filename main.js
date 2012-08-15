@@ -45,6 +45,18 @@ http.createServer(function (req, res) {
               case '.css':
                 contentType = 'text/css';
                 break;
+              case '.png':
+                contentType = 'image/png';
+                break;
+              case '.gif':
+                contentType = 'image/gif';
+                break;
+              case '.jpg':
+                contentType = 'image/jpg';
+                break;
+              case '.ico':
+                contentType = 'image/vnd.microsoft.icon';
+                break;
             }
 
             res.writeHead(200, {'Content-Type': contentType});
