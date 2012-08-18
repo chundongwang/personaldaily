@@ -21,7 +21,7 @@ if (port == 8080) {
   console.warn('Cannot find this computer in port table. You might have problem with NAT!!');
 }
 
-http.createServer(function (req, res) {
+var server = http.createServer(function (req, res) {
   var filepath = '.'+req.url;
   if (filepath=='./')
     filepath='./static/index.html';
@@ -73,7 +73,9 @@ http.createServer(function (req, res) {
     require('./test.js').HelloWorld(req, res);
   }
 
-}).listen(port);
+});
+
+server.listen(port);
 
 console.log('Server running at http://127.0.0.1:%d/', port);
 console.log('Go to http://192.168.1.1/ to add port penetration config with your IP address and port for HTTP.');
