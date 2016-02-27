@@ -18,6 +18,7 @@ iii) You can find the project information here: <https://github.com/chundongwang
 ##2. How to write this markdown file
 It'll be great to get familiar with markdown syntax here: <http://daringfireball.net/projects/markdown/syntax>
 
+
 ##3. How to start with Nodejs
 It seems the document is very much well distributed on Internet. Some of the following urls could be helpful:
 
@@ -36,6 +37,8 @@ There's a official windows client as mentioned above. When you installed it, you
 ii) Sync the change through a "sync" button on the top tool bar area, just right of "master" and "tools".
 
 ##6. How to start using GitHub on Mac
+Github GUI works on Mac as well. Check out the official website here: [Github Desktop](https://desktop.github.com/).
+Meanwhile, OS X users may also use the Terminal.App to gain a full command of Git features. Check out here: [1.4 Getting Started - The Command Line](https://git-scm.com/book/en/v2/Getting-Started-The-Command-Line)
 
 ##7. How to publish your contributions
 Basically, eqqon has a great guide here: [eqqon.com/github](http://www.eqqon.com/index.php/Collaborative_Github_Workflow). Let me extract the skeleton here and please visit the link to get detailed commands:
